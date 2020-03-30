@@ -5,6 +5,7 @@ namespace Proiect_Piu
 
     class Program
     {
+      
         static void Main(string[] args)
         {
             Masina m1 = new Masina();
@@ -28,10 +29,7 @@ namespace Proiect_Piu
                 {
                     case "1":
                         {
-                           
-                            Console.WriteLine("Introduceti datele(NumeCumparator,NumeVanzator,marca,model," +
-                                "culoarea,pret,anFabricatie)");
-                            m1 = new Masina( Console.ReadLine());
+                            m1= m1.CitireTastatura();
                             Console.ReadKey();
                             break;
 
@@ -40,32 +38,76 @@ namespace Proiect_Piu
                         {
                             Console.WriteLine("Selectati datele pe care doriti sa le modificat");
                             Console.WriteLine("1.Numele Vanzatorului\n");
-                            Console.WriteLine("2.Numele cumparatprului\n");
+                            Console.WriteLine("2.Numele cumparatorului\n");
                             Console.WriteLine("3.Marca masinii\n");
                             Console.WriteLine("4.Modelul masinii\n");
                             Console.WriteLine("5.Culoarea masinii\n");
                             Console.WriteLine("6.Pretul masinii\n");
                             Console.WriteLine("7.Anul fabricatiei\n");
+                            Console.WriteLine("8.Iesire meniu\n");
                             Console.WriteLine("Alege o optiune\n");
                             string opt1 = Console.ReadLine();
                             if(opt1 == "1" )
                             {
                                 Console.WriteLine("Dati numele vanzatorului\n");
-                                m1.SetNumeVanzator(Console.ReadLine());
+                                m1.NumeVanzator(Console.ReadLine());
+                               
 
                             }
+
                             if(opt1 == "2")
                             {
+                                Console.WriteLine("Dati numele cumparatorului");
+                                m1.NumeCumparator = Console.ReadLine();
 
                             }
-                                
+
+                            if(opt1 == "3")
+                            {
+                                Console.WriteLine("Dati marca masinii");
+                                m1.Marca = Console.ReadLine();
+                            }
+
+                            if(opt1 == "4")
+                            {
+                                Console.WriteLine("Dati modelul masinii");
+                                m1.Model = Console.ReadLine();
+
+                            }
+
+                            if(opt1 == "5")
+                            {
+                                Console.WriteLine("Dati culoarea masinii");
+                                m1.Culoare = Console.ReadLine();
+                            }
+
+                           // if (opt1 == "6")
+                            {
+                              //  Console.WriteLine("Dati pretul masinii");
+                             //   m1.Pret = Console.ReadLine();
+                            }
+
+                           // if (opt1 == "7")
+                            {
+                                //Console.WriteLine("Dati anul fabricatiei");
+                               // m1.SetAnFabricatie(Console.ReadLine());
+
+                            }
+                            
+
                             Console.ReadKey();
                             break;
                         }
                     case "6":
                         {
-                            m1.Afisare();
+                            Console.WriteLine(m1.ConversieLaSir());
                             Console.ReadKey();
+                            break;
+                        }
+
+                    case "8":
+                        {
+                            ok = false;
                             break;
                         }
 

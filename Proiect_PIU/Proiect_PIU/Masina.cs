@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Proiect_Piu
 {
+    
     public class Masina
     {
+
         string marca;
         string model;
         string culoare;
@@ -45,16 +47,28 @@ namespace Proiect_Piu
             pret = Convert.ToInt32(buff[5]);
             anFabricatie = Convert.ToInt32(buff[6]);
 
-
         }
 
+        public string NumeVanzator { set; get ; }
+        public string NumeCumparator { get; set; }
+        public string Marca { get; set; }
+        public string Model { get; set; }
+        public string Culoare { get; set; }
+        public double Pret { get; set; }
+        public int AnFabricatie { get; set;  }
+
+       
+
+
+
+        
         public string GetNumeCumparator()
         {
             return numeCumparator;
         }
         public string GetNumeVanzator()
         {
-            return numeVanzator;
+              return numeVanzator;
         }
 
         public string GetMarca()
@@ -117,6 +131,35 @@ namespace Proiect_Piu
         public void SetAnFabricatie(int _anFabricatie)
         {
             anFabricatie = _anFabricatie;
+        }
+
+        public  Masina CitireTastatura()
+        {
+            Masina m1 = new Masina();
+
+            Console.WriteLine("Dati numele vanzatorului");
+            m1.numeVanzator = Console.ReadLine();
+
+            Console.WriteLine("Dati numele cumparatorului");
+            m1.numeCumparator = Console.ReadLine();
+
+            Console.WriteLine("Dati marca masinii");
+            m1.marca = Console.ReadLine();
+
+            Console.WriteLine("Dati modelul masinii");
+            m1.model = Console.ReadLine();
+
+            Console.WriteLine("Dati culoarea masinii");
+            m1.culoare = Console.ReadLine();
+
+            Console.WriteLine("Dati Pretul masinii");
+            m1.pret = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Dati anul fabricatiei masinii");
+            m1.anFabricatie = Convert.ToInt32(Console.ReadLine());
+            return m1;
+
+
         }
 
         public void Afisare()
