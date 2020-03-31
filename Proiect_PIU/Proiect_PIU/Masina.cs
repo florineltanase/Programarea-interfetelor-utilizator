@@ -7,14 +7,19 @@ namespace Proiect_Piu
     
     public class Masina
     {
+        //constanta
+        public const int MAI_MARE = 1;
+        public const int MAI_MIC = -1;
+        public const int EGAl = 0;
 
-        string marca;
-        string model;
-        string culoare;
-        string numeCumparator;
-        string numeVanzator;
-        double pret;
-        int anFabricatie;
+        public string numeVanzator { set; get; }
+        public string numeCumparator { get; set; }
+        public string marca { get; set; }
+        public string model { get; set; }
+        public string culoare { get; set; }
+        public double pret { get; set; }
+        public int anFabricatie { get; set; }
+
 
         public Masina()
         {
@@ -49,134 +54,9 @@ namespace Proiect_Piu
 
         }
 
-        public string NumeVanzator { set; get ; }
-        public string NumeCumparator { get; set; }
-        public string Marca { get; set; }
-        public string Model { get; set; }
-        public string Culoare { get; set; }
-        public double Pret { get; set; }
-        public int AnFabricatie { get; set;  }
-
-       
-
-
-
-        
-        public string GetNumeCumparator()
+        public int Compare(Masina _m)
         {
-            return numeCumparator;
-        }
-        public string GetNumeVanzator()
-        {
-              return numeVanzator;
-        }
-
-        public string GetMarca()
-        {
-            return marca;
-        }
-
-        public string GetModel()
-        {
-            return model;
-
-        }
-
-        public string GetCuloare()
-        {
-            return culoare;
-        }
-
-        public double GetPret()
-        {
-            return pret;
-        }
-
-        public int GetAnFabricatie()
-        {
-            return anFabricatie;
-        }
-
-        public void SetNumeCumparator(string _numeCumparator)
-        {
-            numeCumparator = _numeCumparator;
-        }  
-
-        public void SetNumeVanzator(string _numeVanzator)
-        {
-            numeVanzator = _numeVanzator;
-
-        }
-
-        public void SetNumeMarca(string _marca)
-        {
-            marca = _marca;
-        }
-
-        public void SetNumeModel(string _model)
-        {
-            model = _model;
-        }
-
-        public void SetCuloare(string _culoare)
-        {
-            culoare = _culoare;
-        }
-
-        public void SetPret(double _pret)
-        {
-            pret = _pret;
-        }
-
-        public void SetAnFabricatie(int _anFabricatie)
-        {
-            anFabricatie = _anFabricatie;
-        }
-
-        public  Masina CitireTastatura()
-        {
-            Masina m1 = new Masina();
-
-            Console.WriteLine("Dati numele vanzatorului");
-            m1.numeVanzator = Console.ReadLine();
-
-            Console.WriteLine("Dati numele cumparatorului");
-            m1.numeCumparator = Console.ReadLine();
-
-            Console.WriteLine("Dati marca masinii");
-            m1.marca = Console.ReadLine();
-
-            Console.WriteLine("Dati modelul masinii");
-            m1.model = Console.ReadLine();
-
-            Console.WriteLine("Dati culoarea masinii");
-            m1.culoare = Console.ReadLine();
-
-            Console.WriteLine("Dati Pretul masinii");
-            m1.pret = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Dati anul fabricatiei masinii");
-            m1.anFabricatie = Convert.ToInt32(Console.ReadLine());
-            return m1;
-
-
-        }
-
-        public void Afisare()
-        {
-            Console.WriteLine("Masina a fost vanduta de {0}" +
-                " " +
-                "fiind cumparata de {1}," +
-                " " +
-                "masina avand marca {2}" +
-                " " +
-                "modelul fiind {3}" +
-                " " + 
-                "culoare {4}" +
-                " " +
-                "avand un pret de {5}" +
-                " " +
-                "fiind fabricata in {6}", numeVanzator,numeCumparator, marca, model, culoare, pret, anFabricatie);
+            return this.anFabricatie.CompareTo(_m.anFabricatie);
         }
 
         public string ConversieLaSir()
@@ -184,7 +64,13 @@ namespace Proiect_Piu
             string sDate = "Nu exista (Nu ati apelat metoda SetDate)";
             if (numeCumparator != null)
             {
-                sDate = string.Join(", ", numeVanzator, numeCumparator, marca, model, culoare, pret, anFabricatie);
+                sDate = string.Join(", ", "Masina a fost vanduta de " + numeVanzator, 
+                    " fiind cumparata de " +numeCumparator,
+                     " masina avand marca " +marca,
+                     " modelul fiind " +model,
+                     " culoarea " +culoare,
+                     " avand un pret de " +pret + " euro ",
+                     " fiind fabricata in " +anFabricatie);
             }
             string s = string.Format(" {0} ", sDate);
             return s;
