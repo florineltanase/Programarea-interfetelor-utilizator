@@ -9,7 +9,7 @@ namespace Proiect_Piu
         {
 
             
-                Masina m1 = new Masina();
+            Masina m1 = new Masina();
 
             bool ok = true;
             string opt;
