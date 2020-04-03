@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Proiect_Piu
+namespace Librarie
 {
     
     public class Masina
@@ -54,9 +54,9 @@ namespace Proiect_Piu
 
         }
 
-        public int Compare(Masina _m)
+        public int Compare(Masina m)
         {
-            return this.anFabricatie.CompareTo(_m.anFabricatie);
+            return this.anFabricatie.CompareTo(m.anFabricatie);
         }
 
         public string ConversieLaSir()

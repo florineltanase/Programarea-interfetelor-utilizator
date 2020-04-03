@@ -1,6 +1,9 @@
 ﻿using System;
+using LibrarieC;
+using NivelAccesDate;
+using Proiect_PIU;
 
-namespace Proiect_Piu
+namespace Program_PIU
 {
 
     class Program
@@ -8,9 +11,11 @@ namespace Proiect_Piu
         static void Main(string[] args)
         {
 
-            
-            Masina m1 = new Masina();
-
+            IStocareData adminMasina = StocareFactory.GetAdministratorStocare();
+            //Masina m1 = new Masina();
+            Masina[] masini;
+            int nrMasini;
+            masini = adminMasina.GetMasina(out nrMasini);
             bool ok = true;
             string opt;
             while (ok)
@@ -30,89 +35,49 @@ namespace Proiect_Piu
                 switch (opt.ToUpper())
                 {
                     case "1":
-                        {
-                            m1= CitireTastatura();
+                       {
+                            Console.Clear();
+                            Masina m = CitireTastatura();
+                            masini[nrMasini] = m;
+                            nrMasini++;
+                            adminMasina.AddMasina(m);
                             Console.ReadKey();
                             break;
+                       }
 
-                        }
+                    
                     case "2":
-                        {
-                            Console.WriteLine("Selectati datele pe care doriti sa le modificati");
-                            Console.WriteLine("1.Numele Vanzatorului\n");
-                            Console.WriteLine("2.Numele cumparatorului\n");
-                            Console.WriteLine("3.Marca masinii\n");
-                            Console.WriteLine("4.Modelul masinii\n");
-                            Console.WriteLine("5.Culoarea masinii\n");
-                            Console.WriteLine("6.Pretul masinii\n");
-                            Console.WriteLine("7.Anul fabricatiei\n");
-                            Console.WriteLine("8.Iesire meniu\n");
-                            Console.WriteLine("Alege o optiune\n");
-                            string opt1 = Console.ReadLine();
-                            if(opt1 == "1" )
+                      {
+                            Console.WriteLine("Dati numele vanzatorului: ");
+                            string nume_vanzator_temporar = Console.ReadLine();
+                            Console.WriteLine("Dati numele cumparatorului");
+                            string nume_cumparator_temporar = Console.ReadLine();
+                            Console.WriteLine("Dati Marca masinii");
+                            string marca = Console.ReadLine();
+                            Masina m = CautMasina(nume_vanzator_temporar, nume_cumparator_temporar, marca, nrMasini, masini);
+                            if(m!=null)
                             {
-                                Console.WriteLine("Dati numele vanzatorului\n");
-                                m1.numeVanzator= Console.ReadLine();
-                                Console.ReadKey();
-                                break;
-                            }
-
-                            if(opt1 == "2")
-                            {
-                                Console.WriteLine("Dati numele cumparatorului");
-                                m1.numeCumparator = Console.ReadLine();
-                                Console.ReadKey();
-                                break;
-                            }
-
-                            if(opt1 == "3")
-                            {
-                                Console.WriteLine("Dati marca masinii");
-                                m1.marca = Console.ReadLine();
-                                Console.ReadKey();
-                                break;
-                            }
-
-                            if(opt1 == "4")
-                            {
-                                Console.WriteLine("Dati modelul masinii");
-                                m1.model = Console.ReadLine();
-                                Console.ReadKey();
-                                break;
-
-                            }
-
-                            if(opt1 == "5")
-                            {
-                                Console.WriteLine("Dati culoarea masinii");
-                                m1.culoare = Console.ReadLine();
-                                Console.ReadKey();
-                                break;
-                            }
-
-                            if (opt1 == "6")
-                            {
+                                Console.WriteLine("Dati Modelul masinii");
+                                m.Model = Console.ReadLine();
+                                Console.WriteLine("Dati Culoarea masinii");
+                                m.Culoare = Console.ReadLine();
                                 Console.WriteLine("Dati pretul masinii");
-                                m1.pret = Convert.ToDouble(Console.ReadLine());
-                                Console.ReadKey();
-                                break;
+                                m.Pret = Convert.ToDouble(Console.ReadLine());
+                                Console.WriteLine("Dati anul Fabricatiei masinii");
+                                m.Anfabricatie = Convert.ToInt32(Console.ReadLine());
                             }
 
-                            if (opt1 == "7")
-                            {
-                                Console.WriteLine("Dati anul fabricatiei");
-                                m1.anFabricatie=Convert.ToInt32(Console.ReadLine());
-                                Console.ReadKey();
-                                break;
+                          Console.ReadKey();
+                          break;
+                      }
 
-                            }
-                            Console.ReadKey();
-                            break;
-                            
-                        }
                     case "6":
                         {
-                            Console.WriteLine(m1.ConversieLaSir());
+                            Console.WriteLine("Masinile sunt: ");
+                            for(int i=0; i< nrMasini; i++)
+                            {
+                                Console.WriteLine(masini[i].ConversieLaSir_Fisier() + "\n ");
+                            }
                             Console.ReadKey();
                             break;
                         }
@@ -124,11 +89,11 @@ namespace Proiect_Piu
 
                             if (m2.Compare(m3) == Masina.MAI_MARE)
                             {
-                                Console.WriteLine(m2.marca + " este mai noua decat " + m3.marca);
+                                Console.WriteLine(m2.Marca + " este mai noua decat " + m3.Marca);
                             }
                             else if (m2.Compare(m3) == Masina.MAI_MIC)
                             {
-                                Console.WriteLine(m2.marca + " este mai veche decat " + m3.marca);
+                                Console.WriteLine(m2.Marca + " este mai veche decat " + m3.Marca);
                             }
                             else
                             {
@@ -150,6 +115,16 @@ namespace Proiect_Piu
             Console.ReadKey();
         }
 
+        public static Masina CautMasina(string numevanzator,string numecumparator,string marca,int nrMasini, Masina[] sir_Masina)
+        {
+            for(int i=0; i< nrMasini; i++)
+            {
+                if ((string.Equals(numevanzator, sir_Masina[i].Numevanzator)) && (string.Equals(numecumparator, sir_Masina[i].Numecumparator))&& (string.Equals(marca,sir_Masina[i].Marca)))
+                    return sir_Masina[i];
+            }
+            return null;
+        }
+  
         public static Masina CitireTastatura()
         {
 
@@ -179,8 +154,5 @@ namespace Proiect_Piu
             return m1;
         }
     }
-    
-
-
-    }
+}
 
