@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proiect_PIU", "Proiect_PIU\Proiect_PIU.csproj", "{48F23270-7F2F-476E-842E-EF8680960A63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarieC", "LibrarieC\LibrarieC.csproj", "{D5FC7554-9CF1-4BC8-8707-D4212CC78099}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibrarieC", "LibrarieC\LibrarieC.csproj", "{D5FC7554-9CF1-4BC8-8707-D4212CC78099}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NivelAccesDate", "NivelAccesDate\NivelAccesDate.csproj", "{BEEDDC77-94E9-4C0B-BEF6-ABD3E17EC944}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NivelAccesDate", "NivelAccesDate\NivelAccesDate.csproj", "{BEEDDC77-94E9-4C0B-BEF6-ABD3E17EC944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

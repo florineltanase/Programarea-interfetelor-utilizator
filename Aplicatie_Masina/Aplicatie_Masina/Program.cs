@@ -1,9 +1,9 @@
 ﻿using System;
-using LibrarieC;
+using Librarie;
 using NivelAccesDate;
-using Proiect_PIU;
 
-namespace Program_PIU
+
+namespace Aplicatie_Masina
 {
 
     class Program
@@ -59,7 +59,7 @@ namespace Program_PIU
                             {
                                 bool da = true;
                                 string opt1;
-                                while(da)
+                                while (da)
                                 {
                                     Console.Clear();
                                     Console.WriteLine("Alegeti ce doriti sa modificati: \n");
@@ -101,7 +101,7 @@ namespace Program_PIU
                                             break;
 
                                         case "5":
-                                           
+
                                             Console.WriteLine("Alegeti dotarea\n");
                                             Console.WriteLine("Alegeti optiunile: \n1.Aer_conditionat\n2.Navigatie\n3.Cutie_automata\n4.Cutie_manuala\n5.Tapiterie_Piele\n6.Jante_aliaj\n7.Geamuri_electrice\n8.Cruise_control\n.9.Fara_optiuni\n");
                                             m.Dotari = (Grup)Convert.ToInt32(Console.ReadLine());
@@ -115,8 +115,8 @@ namespace Program_PIU
 
                                     }
                                 }
-                                
-                                
+
+
                             }
 
                             Console.ReadKey();
@@ -145,7 +145,7 @@ namespace Program_PIU
                             }
                             else if (m2.Compare(m3) == Masina.MAI_MIC)
                             {
-                                Console.WriteLine("Masina " + m2.Marca + " este mai veche decat " + " masina " +m3.Marca);
+                                Console.WriteLine("Masina " + m2.Marca + " este mai veche decat " + " masina " + m3.Marca);
                             }
                             else
                             {
@@ -179,31 +179,31 @@ namespace Program_PIU
 
         public static Masina CitireTastatura()
         {
-            string numeVanzator, numeCumparator, marca, model, culoare,dotari1;
+            string numeVanzator, numeCumparator, marca, model, culoare, dotari1;
             double pret;
             int anFabricatie;
             Grup dotari;
 
             Console.WriteLine("Dati numele vanzatorului");
-             numeVanzator = Console.ReadLine();
+            numeVanzator = Console.ReadLine();
 
             Console.WriteLine("Dati numele cumparatorului");
-             numeCumparator = Console.ReadLine();
+            numeCumparator = Console.ReadLine();
 
             Console.WriteLine("Dati marca masinii");
-             marca = Console.ReadLine();
+            marca = Console.ReadLine();
 
             Console.WriteLine("Dati modelul masinii");
-             model = Console.ReadLine();
+            model = Console.ReadLine();
 
             Console.WriteLine("Dati culoarea masinii");
-             culoare = Console.ReadLine();
+            culoare = Console.ReadLine();
 
             Console.WriteLine("Dati Pretul masinii");
-             pret = Convert.ToDouble(Console.ReadLine());
+            pret = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Dati anul fabricatiei masinii");
-             anFabricatie = Convert.ToInt32(Console.ReadLine());
+            anFabricatie = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Alegeti optiunile: \n1.Aer_conditionat\n2.Navigatie\n3.Cutie_automata\n4.Cutie_manuala\n5.Tapiterie_Piele\n6.Jante_aliaj\n7.Geamuri_electrice\n8.Cruise_control\n.9.Fara_optiuni\n");
             dotari1 = Console.ReadLine();
@@ -211,11 +211,11 @@ namespace Program_PIU
 
             return new Masina(numeVanzator, numeCumparator, marca, model, culoare, pret, anFabricatie, dotari);
 
-            
 
 
 
-            
+
+
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibrarieC
+namespace Librarie
 
 {
 
@@ -25,7 +25,7 @@ namespace LibrarieC
         private const int ANF = 6;
         private const int DOT = 7;
         Grup dotari;
-        
+
 
 
 
@@ -102,7 +102,7 @@ namespace LibrarieC
             string s = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}", SEPARATOR_PRINCIPAL_FISIER, (Numevanzator ?? " NECUNOSCUT "),
                 (Numecumparator ?? " NECUNOSCUT "), (Marca ?? " NECUNOSCUT "),
                 (Model ?? " NECUNOSCUT "), (Culoare ?? " NECUNOSCUT "),
-                Pret, Anfabricatie,Dotari);
+                Pret, Anfabricatie, Dotari);
 
 
             return s;
