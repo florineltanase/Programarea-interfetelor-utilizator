@@ -28,5 +28,25 @@ namespace NivelAccesDate
         {
             throw new Exception("Optiunea GetMasina nu este implementata");
         }
+
+        public List<Masina> GetMasina()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Masina GetMasinaByIndex(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Masina GetMasina(string nume, string prenume)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateMasina(Masina s)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

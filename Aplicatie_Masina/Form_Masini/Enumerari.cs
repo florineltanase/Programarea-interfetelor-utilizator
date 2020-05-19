@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Form_Masini
 {
+    [Flags]
     public enum CodEroare
     {
         CORECT = 0,
         NUME_VANZATOR_INCORECT = 1,
         NUME_CUMPARTOR_INCORECT = 2,
-        MARCA_INCORECT = 3,
-        MODEL_INCORECTA = 4,
-        CULOARE_INCORECTA = 5,
-        PRET_INCORECT = 6,
-        AN_FABRICATIE_INCORECT = 7,
-        DOTARI_INCORECTE = 8
+        MODEL_INCORECT = 4,
+        PRET_INCORECT = 8,
+        CULOARE_NESELECTATA =16,
+        DOTARI_NESELCTATE = 32
 
 
     }

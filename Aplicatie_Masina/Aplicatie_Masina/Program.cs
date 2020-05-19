@@ -104,7 +104,7 @@ namespace Aplicatie_Masina
 
                                             Console.WriteLine("Alegeti dotarea\n");
                                             Console.WriteLine("Alegeti optiunile: \n1.Aer_conditionat\n2.Navigatie\n3.Cutie_automata\n4.Cutie_manuala\n5.Tapiterie_Piele\n6.Jante_aliaj\n7.Geamuri_electrice\n8.Cruise_control\n.9.Fara_optiuni\n");
-                                            m.Dotari = (Grup)Convert.ToInt32(Console.ReadLine());
+                                            m.CuloareMasina = (Grup)Convert.ToInt32(Console.ReadLine());
                                             adminMasina.UpdateMasina(masini, nrMasini);
                                             Console.ReadKey();
                                             break;

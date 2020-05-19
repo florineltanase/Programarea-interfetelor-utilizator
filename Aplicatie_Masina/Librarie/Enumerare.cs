@@ -4,17 +4,31 @@ using System.Text;
 
 namespace Librarie
 {
-    [Flags]
+    
     public enum Grup
     {
-        Aer_conditionat = 1,
-        Navigatie = 2,
-        Cutie_automata = 3,
-        Cutie_manuala = 4,
-        Tapiterie_Piele = 5,
-        Jante_aliaj = 6,
-        Geamuri_electrice = 7,
-        Cruise_control = 8,
-        Fara_optiuni = 9,
+        Alb=0,
+        Albastru=1,
+        Violet=2,
+        Negru=3,
+        Rosu=4,
+        Gri=5,
+        Portocaliu=6,
+        Verde=7,
+        Auriu=8,
+        Culoare_neselectata=9
     };
+
+    public enum CampuriMasina
+    {
+         NUMEV = 0,
+         NUMEC = 1,
+         MARCA = 4,
+         MODEL = 2,
+         CULOARE = 5,
+         PRET = 3,
+         ANF = 6,
+         DOT = 7
+}
+
 }
