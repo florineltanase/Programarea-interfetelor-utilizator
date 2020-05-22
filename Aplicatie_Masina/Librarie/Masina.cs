@@ -132,6 +132,8 @@ namespace Librarie
             Anfabricatie = Int32.Parse(dateFisier[(int)CampuriMasina.ANF]);
             Dotari = new List<string>();
             Dotari.AddRange(dateFisier[(int)CampuriMasina.DOT].Split(SEPARATOR_SECUNDAR_FISIER));
+            DataTranzactie = Convert.ToDateTime(dateFisier[(int)CampuriMasina.DATA_TRANZACTIE]);
+            DataActualizare = Convert.ToDateTime(dateFisier[(int)CampuriMasina.DATA_ACTUALIZARE]);
 
 
         }
@@ -164,8 +166,8 @@ namespace Librarie
             {
                 sDate = string.Join(", ", "Masina a fost vanduta de " + Numevanzator,
                     " fiind cumparata de  " + Numecumparator,
-                      " avand marca "+Marca, " modelul fiind " + Model, " avand Culoarea " +CuloareMasina," fiind fabricata in "+Anfabricatie,
-                      "avand urmatoarele dotari " +DotariAsString);
+                      " \navand marca "+Marca, " modelul fiind " + Model, " avand Culoarea " +CuloareMasina," fiind fabricata in "+Anfabricatie,
+                      " \navand urmatoarele dotari " +DotariAsString);
             }
             string s = string.Format(" {0} ", sDate);
             return s;

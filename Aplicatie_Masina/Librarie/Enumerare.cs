@@ -28,7 +28,9 @@ namespace Librarie
          CULOARE = 5,
          PRET = 3,
          ANF = 6,
-         DOT = 7
+         DOT = 7,
+         DATA_TRANZACTIE = 8,
+         DATA_ACTUALIZARE = 9
 }
 
 }

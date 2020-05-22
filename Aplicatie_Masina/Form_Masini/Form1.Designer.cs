@@ -1,4 +1,4 @@
-﻿namespace Form_Masini
+﻿namespace InterfataUtilizatorv2
 {
     partial class Form1
     {
@@ -500,7 +500,7 @@
             // 
             // btnAdauga
             // 
-            this.btnAdauga.Location = new System.Drawing.Point(29, 359);
+            this.btnAdauga.Location = new System.Drawing.Point(29, 426);
             this.btnAdauga.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdauga.Name = "btnAdauga";
             this.btnAdauga.Size = new System.Drawing.Size(131, 45);
@@ -511,7 +511,7 @@
             // 
             // btnAfiseaza
             // 
-            this.btnAfiseaza.Location = new System.Drawing.Point(231, 359);
+            this.btnAfiseaza.Location = new System.Drawing.Point(231, 426);
             this.btnAfiseaza.Margin = new System.Windows.Forms.Padding(2);
             this.btnAfiseaza.Name = "btnAfiseaza";
             this.btnAfiseaza.Size = new System.Drawing.Size(134, 49);
@@ -522,7 +522,7 @@
             // 
             // btnCauta
             // 
-            this.btnCauta.Location = new System.Drawing.Point(29, 438);
+            this.btnCauta.Location = new System.Drawing.Point(29, 496);
             this.btnCauta.Margin = new System.Windows.Forms.Padding(2);
             this.btnCauta.Name = "btnCauta";
             this.btnCauta.Size = new System.Drawing.Size(131, 48);
@@ -533,7 +533,7 @@
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(231, 438);
+            this.btnModifica.Location = new System.Drawing.Point(231, 496);
             this.btnModifica.Margin = new System.Windows.Forms.Padding(2);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.Size = new System.Drawing.Size(134, 48);

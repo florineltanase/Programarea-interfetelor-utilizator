@@ -57,7 +57,7 @@ namespace NivelAccesDate
                 {
                     string line;
 
-                    //citeste cate o linie si creaza un obiect de tip Student pe baza datelor din linia citita
+                    
                     while ((line = sr.ReadLine()) != null)
                     {
                         Masina s = new Masina(line);
@@ -77,7 +77,7 @@ namespace NivelAccesDate
             return masini;
         }
 
-        public Masina GetMasina(string nume, string prenume)
+        public Masina GetMasina(string numev, string numec)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace NivelAccesDate
                     while ((line = sr.ReadLine()) != null)
                     {
                         Masina masina = new Masina(line);
-                        if (masina.Numevanzator.Equals(nume) && masina.Numecumparator.Equals(prenume))
+                        if (masina.Numevanzator.Equals(numev) && masina.Numecumparator.Equals(numec))
                             return masina;
                     }
                 }

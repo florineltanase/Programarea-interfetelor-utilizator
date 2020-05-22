@@ -12,22 +12,25 @@ using NivelAccesDate;
 
 namespace InterfataUtilizatorv2
 {
-    public partial class Form1 : Form
+    public partial class Forma_Adaugare : Form
     {
         IStocareData adminMasina;
         List<string> dotariSelectate = new List<string>();
-        public Form1()
+        public Forma_Adaugare()
         {
             InitializeComponent();
             adminMasina = StocareFactory.GetAdministratorStocare();
-            this.Width = 825;
-
         }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnAdauga_Click(object sender, EventArgs e)
         {
             ResetCuloareEtichete();
 
-            CodEroare codValidare = Validare(txtNumeVanzator.Text, txtNumeCumparator.Text,txtModel.Text, txtPret.Text);
+            CodEroare codValidare = Validare(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, txtPret.Text);
 
             if (codValidare != CodEroare.CORECT)
             {
@@ -35,7 +38,7 @@ namespace InterfataUtilizatorv2
             }
             else
             {
-                Masina s = new Masina(txtNumeVanzator.Text, txtNumeCumparator.Text,txtModel.Text,Convert.ToDouble(txtPret.Text));
+                Masina s = new Masina(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, Convert.ToDouble(txtPret.Text));
                 s.Marca = cmbMarca.Text;
                 s.CuloareMasina = GetCuloareSelectata();
                 s.Dotari = new List<string>();
@@ -44,6 +47,7 @@ namespace InterfataUtilizatorv2
                 s.DataActualizare = DateTime.Now;
                 s.DataTranzactie = dtpTranzactie.Value;
                 adminMasina.AddMasina(s);
+                MessageBox.Show("Tranzactia a fost adaugata");
                 ResetareControale();
             }
 
@@ -61,7 +65,7 @@ namespace InterfataUtilizatorv2
             lblPret.ForeColor = Color.Black;
         }
 
-        private CodEroare Validare(string numeVanzator, string numeCumparator,string model, string pret)
+        private CodEroare Validare(string numeVanzator, string numeCumparator, string model, string pret)
         {
             CodEroare rezultatValidare = CodEroare.CORECT;
             if (numeVanzator == string.Empty)
@@ -72,7 +76,7 @@ namespace InterfataUtilizatorv2
             {
                 rezultatValidare |= CodEroare.NUME_CUMPARTOR_INCORECT;
             }
-            if(model  == string.Empty)
+            if (model == string.Empty)
             {
                 rezultatValidare |= CodEroare.MODEL_INCORECT;
             }
@@ -80,7 +84,6 @@ namespace InterfataUtilizatorv2
             {
                 rezultatValidare |= CodEroare.PRET_INCORECT;
             }
-            // verificare ca este cel putin o culoare selectata
             int culoareSelectata = 0;
             foreach (var control in gpbCulori.Controls)
             {
@@ -128,37 +131,6 @@ namespace InterfataUtilizatorv2
             }
         }
 
-        private void btnAfiseaza_Click(object sender, EventArgs e)
-        {
-
-            this.Width = 1330;
-            List<Masina> masini = adminMasina.GetMasina();
-
-            
-
-            AdaugaMasiniInControlListbox(masini);
-            AdaugaMasiniInControlDataGridView(masini);
-        }
-        private void AdaugaMasiniInControlListbox(List<Masina> masini)
-        {
-            lstAfisare.Items.Clear();
-            var antetTabel = String.Format("{0,-5}{1,-25}{2,20}{3,10}\n", "Nume Vanzator", "Nume Cumparator", "Culoare", "An Fabricatie");
-            lstAfisare.Items.Add(antetTabel);
-
-            List<Masina> Masini = adminMasina.GetMasina();
-            foreach (Masina s in Masini)
-            {
-                var linieTabel = String.Format("{0,-5}{1,-25}{2,20}{3,10}\n", s.Numevanzator, s.Numecumparator, s.CuloareMasina.ToString(), s.Anfabricatie.ToString());
-                lstAfisare.Items.Add(linieTabel);
-            }
-        }
-        private void AdaugaMasiniInControlDataGridView(List<Masina> studenti)
-        {
-            
-            dataGridStudenti.DataSource = null;
-            dataGridStudenti.DataSource = studenti.Select(s => new { s.Numevanzator, s.Numecumparator, s.Marca, s.Model, s.CuloareMasina, s.Pret, s.Anfabricatie, Dotari = string.Join(",", s.DotariAsString),s.DataTranzactie,s.DataActualizare }).ToList();
-        }
-
         private Grup GetCuloareSelectata()
         {
             if (rdbAlb.Checked)
@@ -181,9 +153,10 @@ namespace InterfataUtilizatorv2
                 return Grup.Auriu;
             return Grup.Culoare_neselectata;
         }
+
         private void ResetareControale()
         {
-            txtNumeVanzator.Text = txtNumeCumparator.Text =txtModel.Text= txtPret.Text = string.Empty;
+            txtNumeVanzator.Text = txtNumeCumparator.Text = txtModel.Text = txtPret.Text = string.Empty;
             rdbAlb.Checked = false;
             rdbAlbastru.Checked = false;
             rdbViolet.Checked = false;
@@ -204,98 +177,21 @@ namespace InterfataUtilizatorv2
             dotariSelectate.Clear();
             cmbMarca.Text = string.Empty;
             cmbAnFabricatie.Text = string.Empty;
-            
+
         }
-        private void ckbDiscipline_CheckedChanged(object sender, EventArgs e)
+        private void ckbDotari_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox checkBoxControl = sender as CheckBox; //operator 'as'
-            //sau
-            //CheckBox checkBoxControl = (CheckBox)sender;  //operator cast
-
+            CheckBox checkBoxControl = sender as CheckBox;
             string disciplinaSelectata = checkBoxControl.Text;
-
-            //verificare daca checkbox-ul asupra caruia s-a actionat este selectat
             if (checkBoxControl.Checked == true)
                 dotariSelectate.Add(disciplinaSelectata);
             else
                 dotariSelectate.Remove(disciplinaSelectata);
         }
-        private void btnModifica_Click(object sender, EventArgs e)
+
+        private void Forma_Adaugare_Load(object sender, EventArgs e)
         {
-            ResetCuloareEtichete();
 
-            CodEroare codValidare = Validare(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, txtPret.Text);
-
-            if (codValidare != CodEroare.CORECT)
-            {
-                MarcheazaControaleCuDateIncorecte(codValidare);
-            }
-            else
-            {
-                Masina s = new Masina(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, Convert.ToDouble(txtPret.Text));
-                s.Marca = cmbMarca.Text;
-                s.CuloareMasina = GetCuloareSelectata();
-                s.Dotari = new List<string>();
-                s.Dotari.AddRange(dotariSelectate);
-                s.Anfabricatie = Int32.Parse(cmbAnFabricatie.Text);
-
-                adminMasina.UpdateMasina(s);
-                lblMesaj.Text = "Studentul a fost actualizat";
-
-                //resetarea controalelor pentru a introduce datele unui student nou
-                ResetareControale();
-            }
         }
-
-        private void btnCauta_Click(object sender, EventArgs e)
-        {
-            Masina s = adminMasina.GetMasina(txtNumeVanzator.Text, txtNumeCumparator.Text);
-            if (s != null)
-            {
-                lblMesaj.Text = s.ConversieLaSir();
-                foreach (var dotari in gpbDotari.Controls)
-                {
-                    if (dotari is CheckBox)
-                    {
-                        var disciplinaBox = dotari as CheckBox;
-                        foreach (String dis in s.Dotari)
-                            if (disciplinaBox.Text.Equals(dis))
-                                disciplinaBox.Checked = true;
-                    }
-                }
-            }
-            else
-                lblMesaj.Text = "Nu s-a gasit tranzactia";
-            if (txtNumeVanzator.Enabled == true && txtNumeCumparator.Enabled == true)
-            {
-                txtNumeVanzator.Enabled = false;
-                txtNumeVanzator.Enabled = false;
-                //dezactivare butoane radio
-                foreach (var button in gpbCulori.Controls)
-                {
-                    if (button is RadioButton)
-                    {
-                        var radioButton = button as RadioButton;
-                        radioButton.Enabled = false;
-                    }
-                }
-            }
-            else
-            {
-                txtNumeVanzator.Enabled = true;
-                txtNumeCumparator.Enabled = true;
-                //activare butoane radio
-                foreach (var button in gpbCulori.Controls)
-                {
-                    if (button is RadioButton)
-                    {
-                        var radioButton = button as RadioButton;
-                        radioButton.Enabled = true;
-                    }
-                }
-            }
-        }
-
-
     }
 }
