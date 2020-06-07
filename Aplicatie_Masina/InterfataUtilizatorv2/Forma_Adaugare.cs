@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Florinel Alexandru Tanase,3123a
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,7 +31,7 @@ namespace InterfataUtilizatorv2
         {
             ResetCuloareEtichete();
 
-            CodEroare codValidare = Validare(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, txtPret.Text);
+            CodEroare codValidare = Validare(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, txtPret.Text,cmbMarca.Text,cmbAnFabricatie.Text);
 
             if (codValidare != CodEroare.CORECT)
             {
@@ -38,21 +39,37 @@ namespace InterfataUtilizatorv2
             }
             else
             {
-                Masina s = new Masina(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, Convert.ToDouble(txtPret.Text));
+                //Masina s = new Masina(txtNumeVanzator.Text, txtNumeCumparator.Text, txtModel.Text, Convert.ToDouble(txtPret.Text));
+                Masina s = new Masina();
+                s.Numevanzator = txtNumeVanzator.Text;
+                s.Numecumparator = txtNumeCumparator.Text;
+                s.Model = txtModel.Text;
+                s.Pret = Convert.ToDouble(txtPret.Text);
                 s.Marca = cmbMarca.Text;
                 s.CuloareMasina = GetCuloareSelectata();
                 s.Dotari = new List<string>();
                 s.Dotari.AddRange(dotariSelectate);
-                s.Anfabricatie = Int32.Parse(cmbAnFabricatie.Text);
+                s.Anfabricatie = Convert.ToInt32(cmbAnFabricatie.Text);
                 s.DataActualizare = DateTime.Now;
                 s.DataTranzactie = dtpTranzactie.Value;
                 adminMasina.AddMasina(s);
                 MessageBox.Show("Tranzactia a fost adaugata");
                 ResetareControale();
+                
             }
 
         }
-
+       
+        private void txtNumeVanzator_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ( !char.IsLetter(e.KeyChar))
+                MessageBox.Show("Nu introduceti cifre!");
+        }
+        private void txtPret_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ( !char.IsDigit(e.KeyChar))
+                MessageBox.Show("Nu introduceti litere");
+        }
         private void ResetCuloareEtichete()
         {
             lblNumeVanzator.ForeColor = Color.Black;
@@ -65,7 +82,7 @@ namespace InterfataUtilizatorv2
             lblPret.ForeColor = Color.Black;
         }
 
-        private CodEroare Validare(string numeVanzator, string numeCumparator, string model, string pret)
+        private CodEroare Validare(string numeVanzator, string numeCumparator, string model, string pret,string marca,string anFabricatie)
         {
             CodEroare rezultatValidare = CodEroare.CORECT;
             if (numeVanzator == string.Empty)
@@ -83,6 +100,19 @@ namespace InterfataUtilizatorv2
             if (pret == string.Empty)
             {
                 rezultatValidare |= CodEroare.PRET_INCORECT;
+            }
+            if(marca == string.Empty)
+            {
+                rezultatValidare |= CodEroare.MARCA_NESELECTATA;
+            }
+            if (anFabricatie == string.Empty)
+            {
+                rezultatValidare |= CodEroare.ANFABRICATIE_NESELECTAT;
+            }
+            if(!ckbAC.Checked && !ckbAutomata.Checked && !ckbCruiseControl.Checked && !ckbGeamuriElectrice.Checked && !ckbJanteAliaj.Checked && !ckbManuala.Checked &&
+                !ckbNavigatie.Checked && !ckbPiele.Checked)
+            {
+                rezultatValidare |= CodEroare.DOTARI_NESELCTATE;
             }
             int culoareSelectata = 0;
             foreach (var control in gpbCulori.Controls)
@@ -118,7 +148,7 @@ namespace InterfataUtilizatorv2
             }
             if ((codValidare & CodEroare.MODEL_INCORECT) == CodEroare.MODEL_INCORECT)
             {
-                lblMarca.ForeColor = Color.Red;
+                lblModel.ForeColor = Color.Red;
             }
             if ((codValidare & CodEroare.CULOARE_NESELECTATA) == CodEroare.CULOARE_NESELECTATA)
             {
@@ -127,6 +157,14 @@ namespace InterfataUtilizatorv2
             if ((codValidare & CodEroare.DOTARI_NESELCTATE) == CodEroare.DOTARI_NESELCTATE)
             {
                 lblDotari.ForeColor = Color.Red;
+               
+            }
+            if ((codValidare & CodEroare.MARCA_NESELECTATA) == CodEroare.MARCA_NESELECTATA)
+            {
+                lblMarca.ForeColor = Color.Red;
+            }
+            if ((codValidare & CodEroare.ANFABRICATIE_NESELECTAT) == CodEroare.ANFABRICATIE_NESELECTAT)
+            {
                 lblAnFabricatie.ForeColor = Color.Red;
             }
         }
@@ -182,16 +220,13 @@ namespace InterfataUtilizatorv2
         private void ckbDotari_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBoxControl = sender as CheckBox;
-            string disciplinaSelectata = checkBoxControl.Text;
+            string dotareSelectata = checkBoxControl.Text;
             if (checkBoxControl.Checked == true)
-                dotariSelectate.Add(disciplinaSelectata);
+                dotariSelectate.Add(dotareSelectata);
             else
-                dotariSelectate.Remove(disciplinaSelectata);
+                dotariSelectate.Remove(dotareSelectata);
         }
+        
 
-        private void Forma_Adaugare_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

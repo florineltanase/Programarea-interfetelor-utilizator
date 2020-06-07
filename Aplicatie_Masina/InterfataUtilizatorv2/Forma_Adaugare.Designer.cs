@@ -279,6 +279,7 @@
             this.txtNumeVanzator.Name = "txtNumeVanzator";
             this.txtNumeVanzator.Size = new System.Drawing.Size(209, 20);
             this.txtNumeVanzator.TabIndex = 52;
+            this.txtNumeVanzator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeVanzator_KeyPress);
             // 
             // txtNumeCumparator
             // 
@@ -287,9 +288,11 @@
             this.txtNumeCumparator.Name = "txtNumeCumparator";
             this.txtNumeCumparator.Size = new System.Drawing.Size(209, 20);
             this.txtNumeCumparator.TabIndex = 53;
+            this.txtNumeCumparator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeVanzator_KeyPress);
             // 
             // cmbMarca
             // 
+            this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarca.FormattingEnabled = true;
             this.cmbMarca.Items.AddRange(new object[] {
             "Alfa_Romeo",
@@ -331,6 +334,7 @@
             // 
             // cmbAnFabricatie
             // 
+            this.cmbAnFabricatie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAnFabricatie.FormattingEnabled = true;
             this.cmbAnFabricatie.Items.AddRange(new object[] {
             "1990",
@@ -376,6 +380,7 @@
             this.txtPret.Name = "txtPret";
             this.txtPret.Size = new System.Drawing.Size(209, 20);
             this.txtPret.TabIndex = 57;
+            this.txtPret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPret_KeyPress);
             // 
             // btnAdauga
             // 
@@ -576,9 +581,9 @@
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.lblNumeCumparator);
             this.Controls.Add(this.lblNumeVanzator);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Forma_Adaugare";
             this.Text = "Forma_Adaugare";
-            this.Load += new System.EventHandler(this.Forma_Adaugare_Load);
             this.gpbDotari.ResumeLayout(false);
             this.gpbDotari.PerformLayout();
             this.gpbCulori.ResumeLayout(false);

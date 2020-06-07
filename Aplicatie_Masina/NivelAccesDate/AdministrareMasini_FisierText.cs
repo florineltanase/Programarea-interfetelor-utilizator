@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Florinel Alexandru Tanase,3123a
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Librarie;
@@ -25,6 +26,7 @@ namespace NivelAccesDate
         }
         public void AddMasina(Masina masina)
         {
+            masina.IdMasina = GetId();
             
             try
             {
@@ -77,7 +79,7 @@ namespace NivelAccesDate
             return masini;
         }
 
-        public Masina GetMasina(string numev, string numec)
+        public Masina GetMasina(string numev, string numec, string marca)
         {
             try
             {
@@ -90,7 +92,7 @@ namespace NivelAccesDate
                     while ((line = sr.ReadLine()) != null)
                     {
                         Masina masina = new Masina(line);
-                        if (masina.Numevanzator.Equals(numev) && masina.Numecumparator.Equals(numec))
+                        if (masina.Numevanzator.Equals(numev) && masina.Numecumparator.Equals(numec) && masina.Marca.Equals(marca))
                             return masina;
                     }
                 }
@@ -108,7 +110,7 @@ namespace NivelAccesDate
 
        
 
-        public bool UpdateMasina(Masina studentActualizat)
+        public bool UpdateMasina(Masina masinaActualizata)
         {
             List<Masina> masini = GetMasina();
             bool actualizareCuSucces = false;
@@ -118,16 +120,16 @@ namespace NivelAccesDate
                 //al doilea parametru setat la 'false' al constructorului StreamWriter indica modul 'overwrite' de deschidere al fisierului
                 using (StreamWriter swFisierText = new StreamWriter(NumeFisier, false))
                 {
-                    foreach (Masina stud in masini)
+                    foreach (Masina mas in masini)
                     {
                         //informatiile despre studentul actualizat vor fi preluate din parametrul "studentActualizat"
-                        if (stud.IdMasina != studentActualizat.IdMasina)
+                        if (mas.Numevanzator != masinaActualizata.Numevanzator)
                         {
-                            swFisierText.WriteLine(stud.ConversieLaSir_Fisier());
+                            swFisierText.WriteLine(mas.ConversieLaSir_Fisier());
                         }
                         else
                         {
-                            swFisierText.WriteLine(studentActualizat.ConversieLaSir_Fisier());
+                            swFisierText.WriteLine(masinaActualizata.ConversieLaSir_Fisier());
                         }
                     }
                     actualizareCuSucces = true;
@@ -144,8 +146,48 @@ namespace NivelAccesDate
 
             return actualizareCuSucces;
         }
+        public List<Masina> GetAnFabricatie()
+        {
+            List<Masina> vehicul = GetMasina();
+            List<Masina> valabil = new List<Masina>();
+            foreach(Masina v in vehicul)
+            {
+                if (v.Anfabricatie >= 2010)
+                    valabil.Add(v);
+            }
+            return valabil;
+        }
+        private int GetId()
+        {
+            int IdMasina = ID_PRIMA_MASINA;
+            try
+            {
+                // instructiunea 'using' va apela sr.Close()
+                using (StreamReader sr = new StreamReader(NumeFisier))
+                {
+                    string line;
 
+                    //citeste cate o linie si creaza un obiect de tip Masina pe baza datelor din linia citita
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Masina s = new Masina(line);
+                        IdMasina = s.IdMasina + INCREMENT;
+                    }
+                }
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("Eroare la deschiderea fisierului. Mesaj: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Eroare generica. Mesaj: " + eGen.Message);
+            }
+            return IdMasina;
+        }
         
- 
+
+
+
     }
 }

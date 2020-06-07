@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Florinel Alexandru Tanase,3123a
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,7 +22,7 @@ namespace Librarie
         Grup dotari;
 
 
-
+        public static int Index { get; set; }
         public int IdMasina { get; set; }
         public string Numevanzator { set; get; }
         public string Numecumparator { get; set; }
@@ -123,6 +124,7 @@ namespace Librarie
         public Masina(string linieFisier)
         {
             var dateFisier = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
+            IdMasina = Convert.ToInt32(dateFisier[(int)CampuriMasina.ID]);
             Numevanzator = dateFisier[(int)CampuriMasina.NUMEV];
             Numecumparator = dateFisier[(int)CampuriMasina.NUMEC];
             Model = dateFisier[(int)CampuriMasina.MODEL];
@@ -149,7 +151,7 @@ namespace Librarie
             {
                 sMasina = string.Join(SEPARATOR_AFISARE, Pret);
             }
-            string s = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}{0}{9}{0}{10}", SEPARATOR_PRINCIPAL_FISIER, (Numevanzator ?? " NECUNOSCUT "),
+            string s = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}{0}{9}{0}{10}{0}{11}", SEPARATOR_PRINCIPAL_FISIER,IdMasina.ToString(), (Numevanzator ?? " NECUNOSCUT "),
                 Numecumparator, Model ,
                 Pret ,Marca, CuloareMasina,
                 Anfabricatie, DotariAsString,DataTranzactie,DataActualizare);

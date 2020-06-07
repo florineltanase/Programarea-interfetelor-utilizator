@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Florinel Alexandru Tanase,3123a
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Librarie;
@@ -33,13 +34,17 @@ namespace NivelAccesDate
         {
             throw new NotImplementedException();
         }
+        public List<Masina> GetAnFabricatie()
+        {
+            throw new NotImplementedException();
+        }
 
         public Masina GetMasinaByIndex(int index)
         {
             throw new NotImplementedException();
         }
 
-        public Masina GetMasina(string nume, string prenume)
+        public Masina GetMasina(string nume, string prenume,string marca)
         {
             throw new NotImplementedException();
         }

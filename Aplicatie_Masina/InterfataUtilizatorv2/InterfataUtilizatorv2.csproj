@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acasa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acasa.Designer.cs">
+      <DependentUpon>Acasa.cs</DependentUpon>
+    </Compile>
     <Compile Include="CautareForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,9 +72,18 @@
     <Compile Include="Forma_Adaugare.Designer.cs">
       <DependentUpon>Forma_Adaugare.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StocareFactory.cs" />
+    <EmbeddedResource Include="Acasa.resx">
+      <DependentUpon>Acasa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CautareForma.resx">
       <DependentUpon>CautareForma.cs</DependentUpon>
     </EmbeddedResource>
@@ -77,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forma_Adaugare.resx">
       <DependentUpon>Forma_Adaugare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

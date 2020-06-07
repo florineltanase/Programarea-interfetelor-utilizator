@@ -1,4 +1,5 @@
-﻿using Librarie;
+﻿//Florinel Alexandru Tanase,3123a
+using Librarie;
 using System.Collections.Generic;
 
 namespace NivelAccesDate
@@ -10,10 +11,13 @@ namespace NivelAccesDate
         List<Masina> GetMasina();
        
 
-        Masina GetMasina(string nume, string prenume);
+        Masina GetMasina(string nume, string prenume,string marca);
 
         bool UpdateMasina(Masina s);
 
-       
+        List<Masina> GetAnFabricatie();
+
+
+
     }
 }

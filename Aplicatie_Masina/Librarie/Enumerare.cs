@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Florinel Alexandru Tanase,3123a
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,16 +22,17 @@ namespace Librarie
 
     public enum CampuriMasina
     {
-         NUMEV = 0,
-         NUMEC = 1,
-         MARCA = 4,
-         MODEL = 2,
-         CULOARE = 5,
-         PRET = 3,
-         ANF = 6,
-         DOT = 7,
-         DATA_TRANZACTIE = 8,
-         DATA_ACTUALIZARE = 9
+         ID = 0,
+         NUMEV = 1,
+         NUMEC = 2,
+         MARCA = 5,
+         MODEL = 3,
+         CULOARE = 6,
+         PRET = 4,
+         ANF = 7,
+         DOT = 8,
+         DATA_TRANZACTIE = 9,
+         DATA_ACTUALIZARE = 10
 }
 
 }
